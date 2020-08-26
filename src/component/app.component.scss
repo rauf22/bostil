@@ -335,7 +335,7 @@ img {
     color: #ef5b4c;
   }
 }
-
+// ----------------------------------------------<Users /> begin
 .users {
   width: 1024px;
   height: 1105px;
@@ -378,6 +378,7 @@ img {
     padding: 20px;
 
     .userbox {
+      padding: 20px;
       .user {
         img {
           width: 74px;
@@ -407,4 +408,10 @@ img {
       }
     }
   }
+}
+// ----------------------------------------------<Users /> end
+.showmorebtn {
+  position: absolute;
+  top: 465px;
+  left: 381px;
 }

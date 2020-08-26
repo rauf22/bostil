@@ -3,10 +3,40 @@ import './app.component.scss';
 import logo from '../images/logo.svg';
 import banner from '../images/banner-photo.jpg';
 import menlaptop from '../images/man-laptop-v1.svg';
-import Users from './Users/Users';
+// import Users from './Users/Users';
+import User from './User/User';
 
 class MyComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      data: [],
+      users: [],
+      currentPage: 1,
+      displayData: [],
+      page: [],
+      grid: [],
+    };
+  }
+
+  componentDidMount() {
+    const url =
+      'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=6';
+    fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ data, users: data.users });
+        console.log(this.state.users);
+      });
+  }
+
   render() {
+    const grid = this.state.users.map((item) => {
+      return <User key={item.id} attributes={item} />;
+    });
+
     return (
       <>
         <header>
@@ -93,8 +123,11 @@ class MyComponent extends Component {
           <p className="subtitle">
             Attention! Sorting users by registration date
           </p>
-          <div className="grid">
-            <Users />
+          <div className="grid">{grid}</div>
+          <div className="showmorebtn">
+            <button className="btn" onClick={this.onClickHandler}>
+              Show more
+            </button>
           </div>
         </div>
       </>
