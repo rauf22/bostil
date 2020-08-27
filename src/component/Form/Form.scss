@@ -1,0 +1,143 @@
+.forma {
+  position: relative;
+  width: 1024px;
+  height: 1105px;
+  background-color: #ffffff;
+
+  .title {
+    top: 272px;
+    left: 300px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #212529;
+  }
+
+  .subtitle {
+    top: 345px;
+    left: 300px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #4c4b4b;
+  }
+
+  form {
+    position: relative;
+
+    .name {
+      top: 420px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529;
+
+      input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+      }
+    }
+
+    .email {
+      top: 511px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529;
+
+      input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+      }
+    }
+
+    .phone {
+      top: 600px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529;
+
+      input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+      }
+    }
+    .spanphone {
+      top: 674px;
+      left: 284px;
+      position: absolute;
+      font-family: OpenSans;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: #212529;
+    }
+
+    .select {
+      top: 710px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529;
+    }
+
+    .selbuttons {
+      top: 710px;
+      left: 284px;
+      position: absolute;
+    }
+
+    .photo {
+      top: 897px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529;
+
+      input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+      }
+    }
+
+    .btnsignun {
+      top: 897px;
+      left: 284px;
+      position: absolute;
+      top: 989px;
+      left: 452px;
+    }
+  }
+}

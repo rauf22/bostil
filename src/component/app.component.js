@@ -3,20 +3,23 @@ import './app.component.scss';
 import logo from '../images/logo.svg';
 import banner from '../images/banner-photo.jpg';
 import menlaptop from '../images/man-laptop-v1.svg';
-// import Users from './Users/Users';
+import Form from './Form/Form';
 import User from './User/User';
 
 class MyComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: [],
       users: [],
+      next_url: '',
+      div: '',
       currentPage: 1,
       displayData: [],
       page: [],
       grid: [],
     };
+    this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount() {
@@ -27,15 +30,59 @@ class MyComponent extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ data, users: data.users });
-        console.log(this.state.users);
+        this.setState({
+          data: data,
+          users: data.users,
+          next_url: data.next_link,
+        });
+        // console.log(this.state.users);
       });
   }
+
+  async fetchData(url) {
+    const response = await fetch(url, { method: 'GET' });
+    const data = await response.json();
+    // .then((response) => response.json())
+    // .then((data) => {
+    this.setState({
+      data,
+      users: data.users,
+      next_url: data.links.next_url,
+    });
+  }
+
+  onSelect(next_url) {
+    // preventDefault();
+    this.fetchData(next_url);
+    // console.log(this.data.links.next_url);
+  }
+
+  // onClickHandler() {
+  //   if (this.state.data.next_url !== null) {
+  //     fetch(this.state.data.next_url, {
+  //       method: 'GET',
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         this.setState({
+  //           data,
+  //           users: data.users,
+  //           // div: document.getElementById('.showmorebtn'),
+  //         });
+  //         console.log(this.state.users);
+  //       });
+  //   }
+  //   document.getElementById('.showmorebtn').style.display = 'none';
+  // }
 
   render() {
     const grid = this.state.users.map((item) => {
       return <User key={item.id} attributes={item} />;
     });
+    const next_url = this.state.next_url;
+    // console.log('next', this.state.data.links.next_url);
+    console.log('nextusers', this.state.users);
+    console.log('nex_url', this.state.data.next_link);
 
     return (
       <>
@@ -124,12 +171,16 @@ class MyComponent extends Component {
             Attention! Sorting users by registration date
           </p>
           <div className="grid">{grid}</div>
+
           <div className="showmorebtn">
-            <button className="btn" onClick={this.onClickHandler}>
+            <button className="btn" onClick={() => this.onSelect(next_url)}>
               Show more
             </button>
           </div>
         </div>
+
+        <Form />
+        
       </>
     );
   }
