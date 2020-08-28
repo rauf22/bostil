@@ -183,13 +183,12 @@ img {
   max-width: 1222px;
   margin: 0 auto; }
 
-.headerTtop {
-  position: relative;
+.headerTop {
+  position: fixed;
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -234,6 +233,7 @@ img {
   color: #f45a40; }
 
 .slide {
+  margin-top: 60px;
   width: 1024px;
   height: 600px;
   position: relative; }
