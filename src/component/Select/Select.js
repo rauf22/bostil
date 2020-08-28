@@ -6,10 +6,16 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 export default function Select() {
+  
+
+
   const [value, setValue] = React.useState('front');
 
   const handleChange = (event) => {
+    event.preventDefault();
     setValue(event.target.value);
+    console.log('valueselect', value);
+    this.props.setStateA(this.state);
   };
 
   return (

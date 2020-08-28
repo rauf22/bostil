@@ -18,6 +18,7 @@ class MyComponent extends Component {
       displayData: [],
       page: [],
       grid: [],
+      classname: 'btn ',
     };
     this.onSelect = this.onSelect.bind(this);
   }
@@ -33,9 +34,13 @@ class MyComponent extends Component {
         this.setState({
           data: data,
           users: data.users,
-          next_url: data.next_link,
+          next_url: data.links.next_url,
         });
-        // console.log(this.state.users);
+        // let classname = 'btn';
+        // if (this.state.next_url === null) {
+        //   classname += 'hide';
+        // }
+        console.log('next_url', this.state.next_url);
       });
   }
 
@@ -44,11 +49,19 @@ class MyComponent extends Component {
     const data = await response.json();
     // .then((response) => response.json())
     // .then((data) => {
+    if (data.links.next_url === null) {
+      this.state.classname += 'hide';
+    }
+
     this.setState({
       data,
+      classname: this.state.classname,
       users: data.users,
       next_url: data.links.next_url,
     });
+    // this is for button Show more
+
+    // ---------------------------
   }
 
   onSelect(next_url) {
@@ -80,6 +93,7 @@ class MyComponent extends Component {
       return <User key={item.id} attributes={item} />;
     });
     const next_url = this.state.next_url;
+    const classname = this.state.classname;
     // console.log('next', this.state.data.links.next_url);
     console.log('nextusers', this.state.users);
     console.log('nex_url', this.state.data.next_link);
@@ -173,14 +187,16 @@ class MyComponent extends Component {
           <div className="grid">{grid}</div>
 
           <div className="showmorebtn">
-            <button className="btn" onClick={() => this.onSelect(next_url)}>
+            <button
+              className={classname}
+              onClick={() => this.onSelect(next_url)}
+            >
               Show more
             </button>
           </div>
         </div>
 
         <Form />
-        
       </>
     );
   }
