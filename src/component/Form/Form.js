@@ -1,27 +1,18 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import './Form.scss';
 import Select from '../Select/Select';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-// import ImageIcon from '@material-ui/core/ImageIcon'
+import { FormErrors } from './FormErrors';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-// const styles = (theme) => ({
-//   input: {
-//     display: 'none',
-//   },
-// });
-
-class Form extends React.Component {
-  // static propTypes = {
-  //   classes: PropTypes.object.isRequired
-  // };
+class Signupform extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,13 +20,18 @@ class Form extends React.Component {
       email: '',
       phone: '',
       position_id: 1,
-      formErrors: { email: '' },
+      formErrors: { name: '', email: '', phone: '', position_id: 1, image: '' },
+      nameValid: false,
       emailValid: false,
+      phoneValid: false,
+      position_idValid: false,
+      imageValid: false,
       formValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateField = this.validateField.bind(this);
   }
 
   handleChange(event) {
@@ -43,13 +39,10 @@ class Form extends React.Component {
     const value = target.value;
     const name = target.name;
 
-    // this.setState({
-    //   [name]: value,
-    // });
-
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
+    this.validateField(name, value);
   }
 
   handleSubmit(event) {
@@ -57,15 +50,6 @@ class Form extends React.Component {
     console.log('formstate', this.state);
 
     var formData = new FormData(newuser);
-
-    // var fileField = document.querySelector('input[type="file"]');
-    // formData.append('position_id', 2);
-    // formData.append('name', 'Jhon');
-    // formData.append('email', 'Jhon@gmail.com');
-    // formData.append('phone', '+380955388485');
-    // formData.append('photo', fileField.files[0]);
-
-    // file from input type='file' var fileField = document.querySelector('input[type="file"]'); formData.append('position_id', 2); formData.append('name', 'Jhon'); formData.append('email', 'Jhon@gmail.com'); formData.append('phone', '+380955388485'); formData.append('photo', fileField.files[0]);
     fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
       method: 'POST',
       body: formData,
@@ -92,20 +76,38 @@ class Form extends React.Component {
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
+    let nameValid = this.state.nameValid;
     let emailValid = this.state.emailValid;
+    let phoneValid = this.state.phoneValid;
+    let position_idValid = this.state.position_idValid;
+    let imageValid = this.state.imageValid;
 
     switch (fieldName) {
+      case 'name':
+        nameValid = value.length >= 2 && value.length <= 60;
+        fieldValidationErrors.name = nameValid ? '' : ' must be from 2 to 60';
+        break;
       case 'email':
         const re = RegExp(
           /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         );
-
         emailValid = re.test(value);
         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
         break;
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '' : ' is too short';
+      case 'phone':
+        const ph = RegExp(/^[\+]{0,1}380([0-9]{9})$/);
+        phoneValid = ph.test(value);
+        fieldValidationErrors.phone = phoneValid ? '' : ' is invalid';
+        break;
+      case 'position_id':
+        position_idValid = value.length >= 1;
+        fieldValidationErrors.position_id = position_idValid
+          ? ''
+          : ' must be minimum 1';
+        break;
+      case 'image':
+        imageValid = /\.jpe?g$/i.test(value);
+        fieldValidationErrors.image = imageValid ? '' : ' is invalid';
         break;
       default:
         break;
@@ -120,7 +122,13 @@ class Form extends React.Component {
   }
 
   validateForm() {
-    this.setState({ formValid: this.state.emailValid });
+    this.setState({
+      formValid:
+        this.state.nameValid &&
+        this.state.emailValid &&
+        this.state.phoneValid &&
+        this.state.position_idValid,
+    });
   }
 
   errorClass(error) {
@@ -130,7 +138,7 @@ class Form extends React.Component {
   render() {
     const value = this.state.select;
     return (
-      <div className="forma">
+      <div id="signup" className="forma">
         <p className="title">Register to get a work</p>
         <p className="subtitle">
           Attention! After successful registration and alert, update the
@@ -138,43 +146,56 @@ class Form extends React.Component {
           list of users in the block from the top
         </p>
 
-        <form id="newuser" onSubmit={this.handleSubmit}>
-          <label className="name">
-            Name
-            <div>
-              <input
-                type="text"
-                name="name"
-                onChange={this.handleChange}
-                placeholder="Your name"
-              />
-            </div>
-          </label>
+        <form className="login-form" id="newuser" onSubmit={this.handleSubmit}>
+          {/* <div className="panel panel-default formErrors">
+            <FormErrors formErrors={this.state.formErrors} />
+          </div> */}
+          <FormGroup>
+            <Label className="name">
+              Name
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  onChange={this.handleChange}
+                  placeholder="Your name"
+                />
+              </div>
+            </Label>
+          </FormGroup>
 
-          <label className="email">
-            Email
-            <div>
-              <input
-                type="text"
-                name="email"
-                required
-                onChange={this.handleChange}
-                placeholder="Your email"
-              />
-            </div>
-          </label>
+          <FormGroup>
+            <Label className="email">
+              Email
+              <div>
+                <input
+                  value={this.state.email}
+                  type="email"
+                  name="email"
+                  required
+                  onChange={this.handleChange}
+                  placeholder="Your email"
+                  className="form-control"
+                />
+              </div>
+            </Label>
+          </FormGroup>
 
-          <label className="phone">
-            Phone number
-            <div>
-              <input
-                type="tel"
-                name="phone"
-                onChange={this.handleChange}
-                placeholder="+380 XX XXX XX XX"
-              />
-            </div>
-          </label>
+          <FormGroup>
+            <Label className="phone">
+              Phone number
+              <div>
+                <input
+                  value={this.state.phone}
+                  type="tel"
+                  name="phone"
+                  required
+                  onChange={this.handleChange}
+                  placeholder="+380XXXXXXXXX"
+                />
+              </div>
+            </Label>
+          </FormGroup>
 
           <span className="spanphone">Еnter phone number in open format</span>
 
@@ -208,33 +229,34 @@ class Form extends React.Component {
           </div>
 
           {/* <div className="uploadfile"> */}
-          <label className="photo">
+          <Label className="photo">
             Photo
             <div>
-              {/* <input
-                type="text"
+              <Input
+                type="file"
                 name="photo"
                 onChange={this.handleChange}
+                style={{ display: 'block' }}
                 placeholder="Upload your photo"
-              /> */}
+              />
 
-              <Button variant="contained" component="label">
+              {/* <Button variant="contained" component="label">
                 Photo
-                <input
+                <Input
                   type="file"
-                  style={{ display: 'inline-block' }}
                   name="photo"
                   onChange={this.handleChange}
                   placeholder="Upload your photo"
+                  style={{ display: 'none' }}
                 />
-              </Button>
+              </Button> */}
             </div>
-          </label>
+          </Label>
           {/* </div> */}
 
           <Button
             type="submit"
-            className="btnsignun"
+            className="btnsignun btn-danger"
             variant="contained"
             color="secondary"
           >
@@ -245,4 +267,4 @@ class Form extends React.Component {
     );
   }
 }
-export default Form;
+export default Signupform;

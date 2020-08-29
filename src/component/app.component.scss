@@ -176,18 +176,20 @@ img {
 //   src: url(../fonts/OpenSans-SemiBold.ttf); /* Путь к файлу со шрифтом */
 
 //   }
+// header {
+//   position: fixed;
+// }
 
 .centerBlockMain {
   max-width: 1222px;
   margin: 0 auto;
 }
-.headerTtop {
-  position: relative;
+.headerTop {
+  position: fixed;
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -239,6 +241,7 @@ img {
 }
 
 .slide {
+  margin-top: 60px;
   width: 1024px;
   height: 600px;
   position: relative;
@@ -262,11 +265,11 @@ img {
     left: 30px;
     top: 295px;
     position: absolute;
-    color: green;
+    color: #fff;
   }
 }
 
-.btn {
+.btnn {
   position: absolute;
   color: #fff;
   width: 210px;
@@ -412,11 +415,10 @@ img {
 // ----------------------------------------------<Users /> end
 .showmorebtn {
   position: absolute;
-  top: 465px;
-  left: 381px;
+  top: 2281px !important;
+  left: 599px !important;
 }
 
 .hide {
   display: none;
 }
-

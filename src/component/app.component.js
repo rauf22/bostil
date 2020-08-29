@@ -3,8 +3,9 @@ import './app.component.scss';
 import logo from '../images/logo.svg';
 import banner from '../images/banner-photo.jpg';
 import menlaptop from '../images/man-laptop-v1.svg';
-import Form from './Form/Form';
+import Signupform from './Form/Form';
 import User from './User/User';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class MyComponent extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class MyComponent extends Component {
       displayData: [],
       page: [],
       grid: [],
-      classname: 'btn ',
+      classname: 'showmorebtn btn-danger',
     };
     this.onSelect = this.onSelect.bind(this);
   }
@@ -100,32 +101,31 @@ class MyComponent extends Component {
 
     return (
       <>
-        <header>
-          <div className="centerBlockMain">
-            <div className="headerTop clearfix">
-              <p className="logo">
-                <img src={logo} alt="" />
-              </p>
-              <nav className="menu">
-                <a className="nav__link" href="#">
-                  About me
-                </a>
-                <a className="nav__link" href="#">
-                  Relationships
-                </a>
-                <a className="nav__link" href="#">
-                  Requirements
-                </a>
-                <a className="nav__link" href="#">
-                  Users
-                </a>
-                <a className="nav__link" href="#">
-                  Sign Up
-                </a>
-              </nav>
-            </div>
+        <div className="centerBlockMain">
+          <div className="headerTop clearfix centerBlockMain">
+            <p className="logo">
+              <img src={logo} alt="" />
+            </p>
+            <nav className="menu">
+              <a className="nav__link" href="#me">
+                About me
+              </a>
+              <a className="nav__link" href="#">
+                Relationships
+              </a>
+              <a className="nav__link" href="#">
+                Requirements
+              </a>
+              <a className="nav__link" href="#users">
+                Users
+              </a>
+              <a className="nav__link" href="#signup">
+                Sign Up
+              </a>
+            </nav>
           </div>
-        </header>
+        </div>
+
         <div className="slide">
           <img src={banner} alt="" />
           <p className="title">
@@ -145,11 +145,11 @@ class MyComponent extends Component {
             in the banner area on the different screens
           </p>
           <div className="baton">
-            <button className="btn">Sugn up now</button>
+            <Button className="btnn btn-danger">Sugn up now</Button>
           </div>
         </div>
 
-        <div className="letsget">
+        <div id="me" className="letsget">
           <p className="title">Let's get acquainted</p>
           <p className="menlaptop">
             <img src={menlaptop} alt="" />
@@ -179,24 +179,19 @@ class MyComponent extends Component {
           </a>
         </div>
 
-        <div className="users">
+        <div id="users" className="users">
           <p className="title">Our cheerful users</p>
           <p className="subtitle">
             Attention! Sorting users by registration date
           </p>
           <div className="grid">{grid}</div>
-
-          <div className="showmorebtn">
-            <button
-              className={classname}
-              onClick={() => this.onSelect(next_url)}
-            >
-              Show more
-            </button>
-          </div>
         </div>
 
-        <Form />
+        <Button className={classname} onClick={() => this.onSelect(next_url)}>
+          Show more
+        </Button>
+
+        <Signupform />
       </>
     );
   }

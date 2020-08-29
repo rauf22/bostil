@@ -29,6 +29,12 @@
   form {
     position: relative;
 
+    .formErrors {
+      top: 420px;
+      left: 284px;
+      position: absolute;
+    }
+
     .name {
       top: 420px;
       left: 284px;
@@ -114,7 +120,7 @@
     }
 
     .photo {
-      top: 897px;
+      top: 926px;
       left: 284px;
       position: absolute;
       font-family: PTSans;
@@ -133,7 +139,7 @@
     }
 
     .btnsignun {
-      top: 897px;
+      top: 1014px;
       left: 284px;
       position: absolute;
       top: 989px;

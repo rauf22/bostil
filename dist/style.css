@@ -1,0 +1,495 @@
+@charset "UTF-8";
+/* --------------- reset.css --------------- */
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+em,
+img,
+strong,
+sub,
+sup,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  /* обнуляем отступы и убираем бордюры */
+  vertical-align: baseline;
+  /* приводим все к одной базовой линии */
+  background: transparent;
+  /* чтобы не проскакивали левые фоны, установленные по умолчанию */
+  font-size: 100%;
+  /* размер шрифта всем одинаковый */ }
+
+a {
+  /* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  outline: none; }
+
+table {
+  /* устраняем отступы между ячейками таблицы */
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+td img {
+  vertical-align: top;
+  /* возвращаем привычное вертикальное выравнивание */ }
+
+input,
+select,
+button,
+textarea {
+  margin: 0;
+  /* убираем отступы по умолчанию для элементов форм (в частности для checkbox и radio) */
+  font-size: 100%;
+  /* делаем размер шрифтов везде одинаковым */
+  outline: none; }
+
+input[type='text'],
+input[type='password'],
+textarea {
+  padding: 0;
+  /* убираем внутренние отступы для текстовых полей */ }
+
+input[type='checkbox'] {
+  /* вертикальное выравнивание чекбоксов и радиобатонов относительно меток */
+  vertical-align: bottom; }
+
+input[type='radio'] {
+  vertical-align: text-bottom; }
+
+sub {
+  vertical-align: sub;
+  font-size: smaller; }
+
+sup {
+  vertical-align: super;
+  font-size: smaller; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+nav ul {
+  list-style: none; }
+
+/* --------------- /reset.css --------------- */
+/* --------------- базовые настройки ---------*/
+html {
+  min-height: 100%;
+  /* всегда показываем вертикальную полосу прокрутки  */ }
+
+body {
+  color: #7e7f84;
+  text-align: left;
+  font-size: 1em;
+  /* используем безопасные шрифтовые CSS стеки */
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Roboto Condensed', sans-serif;*/ }
+
+a,
+a:visited {
+  /* порядок правил для ссылок имеет значение */
+  text-decoration: underline; }
+
+a:hover {
+  color: #f45a40;
+  text-decoration: none; }
+
+a:focus,
+a:active {
+  color: #f45a40;
+  text-decoration: underline; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal; }
+
+img {
+  max-width: 100%; }
+
+.clr {
+  clear: both; }
+
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: table; }
+
+/* --------------- /базовые настройки ---------*/
+.centerBlockMain {
+  max-width: 1222px;
+  margin: 0 auto; }
+
+.headerTop {
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 60px;
+  background-color: #ffffff; }
+
+.logo {
+  float: left;
+  font-family: OpenSans;
+  font-size: 16px;
+  line-height: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #212529; }
+
+.logo img {
+  margin-right: 10px;
+  vertical-align: middle; }
+
+.menu {
+  top: 1px;
+  letter-spacing: 1px;
+  position: absolute;
+  right: 283px;
+  font-family: OpenSans-ExtraBold;
+  font-size: 15px;
+  line-height: 60px;
+  font-weight: 400;
+  color: #212529; }
+
+.nav__link {
+  margin: 0 13px;
+  font-size: 14px;
+  line-height: 60px;
+  font-weight: 400;
+  color: #212529;
+  text-decoration: none; }
+
+.nav__link:hover {
+  color: #f45a40; }
+
+.slide {
+  margin-top: 60px;
+  width: 1024px;
+  height: 600px;
+  position: relative; }
+  .slide .title {
+    top: 105px;
+    right: 462px;
+    position: absolute;
+    font-family: OpenSans-Light;
+    font-size: 50px;
+    line-height: 54px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #ffffff; }
+  .slide .description {
+    line-height: 24px;
+    left: 30px;
+    top: 295px;
+    position: absolute;
+    color: #fff; }
+
+.btn {
+  position: absolute;
+  color: #fff;
+  width: 210px;
+  left: 29px;
+  top: 448px;
+  height: 38px;
+  background-color: #ef5b4c;
+  border-radius: 4px;
+  z-index: 10; }
+
+.letsget {
+  position: relative;
+  height: 600px; }
+  .letsget .title {
+    top: 155px;
+    left: 307px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #212529; }
+  .letsget .menlaptop {
+    position: absolute;
+    top: 275px;
+    left: 51px;
+    width: 339px;
+    height: 285px; }
+  .letsget .subtitle {
+    top: 272px;
+    left: 453px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 400;
+    color: #212529; }
+  .letsget .text {
+    position: absolute;
+    top: 324px;
+    left: 455px;
+    font-family: OpenSans;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #4c4b4b; }
+  .letsget .link {
+    position: absolute;
+    top: 524px;
+    left: 454px;
+    text-decoration: none;
+    font-family: OpenSans;
+    font-size: 16px;
+    line-height: 60px;
+    font-weight: 600;
+    color: #ef5b4c; }
+
+.users {
+  width: 1024px;
+  height: 1105px;
+  background-color: #f9f9f3;
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+  .users .title {
+    position: absolute;
+    top: 270px;
+    left: 326px;
+    font-family: OpenSans;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #212529; }
+  .users .subtitle {
+    position: absolute;
+    top: 346px;
+    left: 365px;
+    font-family: OpenSans;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #4c4b4b; }
+  .users .grid {
+    top: 422px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+    width: 97%;
+    padding: 20px; }
+    .users .grid .userbox {
+      padding: 20px; }
+      .users .grid .userbox .user img {
+        width: 74px;
+        height: 74px;
+        border-radius: 100%;
+        background-color: #3a5384;
+        border: 2px solid #ffffff; }
+      .users .grid .userbox .user .name {
+        font-family: OpenSans;
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: #212529; }
+      .users .grid .userbox .user .positon,
+      .users .grid .userbox .user .email,
+      .users .grid .userbox .user .phone {
+        font-family: OpenSans;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #4c4b4b; }
+
+.showmorebtn {
+  position: absolute;
+  top: 465px;
+  left: 381px; }
+
+.hide {
+  display: none; }
+
+.forma {
+  position: relative;
+  width: 1024px;
+  height: 1105px;
+  background-color: #ffffff; }
+  .forma .title {
+    top: 272px;
+    left: 300px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #212529; }
+  .forma .subtitle {
+    top: 345px;
+    left: 300px;
+    position: absolute;
+    font-family: OpenSans;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #4c4b4b; }
+  .forma form {
+    position: relative; }
+    .forma form .name {
+      top: 420px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529; }
+      .forma form .name input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px; }
+    .forma form .email {
+      top: 511px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529; }
+      .forma form .email input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px; }
+    .forma form .phone {
+      top: 600px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529; }
+      .forma form .phone input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px; }
+    .forma form .spanphone {
+      top: 674px;
+      left: 284px;
+      position: absolute;
+      font-family: OpenSans;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: #212529; }
+    .forma form .select {
+      top: 710px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529; }
+    .forma form .selbuttons {
+      top: 710px;
+      left: 284px;
+      position: absolute; }
+    .forma form .photo {
+      top: 897px;
+      left: 284px;
+      position: absolute;
+      font-family: PTSans;
+      font-size: 16px;
+      line-height: 28px;
+      font-weight: 400;
+      color: #212529; }
+      .forma form .photo input {
+        width: 467px;
+        height: 38px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px; }
+    .forma form .btnsignun {
+      top: 897px;
+      left: 284px;
+      position: absolute;
+      top: 989px;
+      left: 452px; }
+
+
