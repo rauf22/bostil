@@ -21,7 +21,7 @@ class MyComponent extends Component {
       grid: [],
       classname: 'showmorebtn btn-danger',
     };
-    this.onSelect = this.onSelect.bind(this);
+    // this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount() {
@@ -65,11 +65,11 @@ class MyComponent extends Component {
     // ---------------------------
   }
 
-  onSelect(next_url) {
-    // preventDefault();
-    this.fetchData(next_url);
-    // console.log(this.data.links.next_url);
-  }
+  // onSelect(next_url) {
+  // preventDefault();
+  // this.fetchData(next_url);
+  // console.log(this.data.links.next_url);
+  // }
 
   // onClickHandler() {
   //   if (this.state.data.next_url !== null) {
@@ -187,7 +187,7 @@ class MyComponent extends Component {
           <div className="grid">{grid}</div>
         </div>
 
-        <Button className={classname} onClick={() => this.onSelect(next_url)}>
+        <Button className={classname} onClick={() => this.fetchData(next_url)}>
           Show more
         </Button>
 
